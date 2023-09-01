@@ -7,10 +7,11 @@ const API_KEY = "a17870ef30c5ab6416d1790f9a760f35";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [cityName, setCityName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const fetchWeatherData = async () => {
+  // Remove cityName and setCityName from App state
+
+  const fetchWeatherData = async (cityName) => { // Accept cityName as a parameter
     setLoading(true);
     try {
       const response = await fetch(
@@ -28,9 +29,7 @@ function App() {
     <div>
       <Header />
       <SearchComponent
-        cityName={cityName}
-        setCityName={setCityName}
-        fetchWeatherData={fetchWeatherData}
+        fetchWeatherData={fetchWeatherData} // Pass the fetchWeatherData function directly
       />
       <WeatherDisplayComponent
         weatherData={weatherData}
